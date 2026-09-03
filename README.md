@@ -88,3 +88,28 @@ float  -> 42.0f
 double -> 42.0 
 ```
 
+```
+ScalarConverter.cpp
+
+型判定
+├── isChar()
+├── isInt()
+├── isFloat()
+├── isDouble()
+└── detectType()
+
+変換
+├── fromChar()
+├── fromInt()
+├── fromFloat()
+└── fromDouble()
+
+出力
+├── printChar()
+├── printInt()
+├── printFloat()
+└── printDouble()
+
+public interface
+└── ScalarConverter::convert()
+```
