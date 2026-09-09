@@ -113,3 +113,9 @@ ScalarConverter.cpp
 public interface
 └── ScalarConverter::convert()
 ```
+
+特殊値について：ex00/practice.cppで確認
+```
+man 3 isnan
+man 3 isinf
+```
