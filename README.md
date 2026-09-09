@@ -119,3 +119,13 @@ public interface
 man 3 isnan
 man 3 isinf
 ```
+
+##ex01
+`reinterpret_cast<target-type>(expr)`の練習
+
+### reinterpret_castとは？
+- `static_cast`, `const_cast`で扱うことのできない型変換を行うキャスト演算子
+- ポインタ型と整数型の直接変換等
+- `std::intptr_t` -> ポインタ型の値を全て表現することができることが保証された、特別な符号付き整数型
+符号あり：std::intptr_t
+符号なし：std::uintptr_t
