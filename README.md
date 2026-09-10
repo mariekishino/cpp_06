@@ -120,7 +120,7 @@ man 3 isnan
 man 3 isinf
 ```
 
-##ex01
+## ex01
 `reinterpret_cast<target-type>(expr)`の練習
 
 ### reinterpret_castとは？
@@ -129,3 +129,30 @@ man 3 isinf
 - `std::intptr_t` -> ポインタ型の値を全て表現することができることが保証された、特別な符号付き整数型
 符号あり：std::intptr_t
 符号なし：std::uintptr_t
+
+
+## ex02
+**reference**
+ストラウストラップC++ p.641 chap.22実行時型情報
+`dynamic_cast`
+`RTTI`
+
+### RTTIとは
+(独習C++ p.498)
+-実行時型情報(RTTI: RunTime Type Information)
+-コンパイル時ではなく実行時に、そのオブジェクトの型について調べる機能のこと
+-
+
+### アップキャストとは
+- 派生クラスから基底クラスへ変換
+
+### ダウンキャストとは
+- 基底クラスから派生クラスへの変換をすること
+
+### クロスキャストとは
+- 多重継承において、ある基底クラス側から別の基底クラス側へ変換すること
+
+継承関係のどちら方向へ型を変換するかを表す。
+
+`std::bad_cast`は`std::exception`を継承しているから、基底クラスの参照でもcatchできる
+
