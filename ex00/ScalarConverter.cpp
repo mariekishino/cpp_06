@@ -1,7 +1,7 @@
 #include "ScalarConverter.hpp"
 
 #include <iostream>
-#include <sstream> // for istringstream
+#include <sstream> // for stringstream
 #include <iomanip>
 #include <limits>
 #include <cctype>
@@ -328,7 +328,6 @@ static void fromChar(const std::string &input)
 	float f = static_cast<float>(c);
 	double d = static_cast<double>(c);
 
-	// printAll(type, input, c, i, f, d);
 	printChar(true, c);
 	printInt(true, i);
 	printFloat(true, f);
@@ -357,45 +356,64 @@ decimal     127
 octal       77
 hexadecimal 7F
 */
+
 static void fromInt(const std::string &input)
 {
 	std::istringstream stream(input);
 
-	int i;
+	double d;
 	
-	stream >> i;
+	stream >> d;
 
-	// intのoverflowを検出
+	// if stream failed as double
 	if (stream.fail())
 	{
 		printImpossible();
 		return ;
 	}
 
-	// min = -128, max = 127
-	int charMin = 
-		static_cast<int>(std::numeric_limits<char>::min());
-	int charMax = 
-		static_cast<int>(std::numeric_limits<char>::max());
+	// int range check
+	double intMin =
+		static_cast<double>(std::numeric_limits<int>::min());
+	double intMax =
+		static_cast<double>(std::numeric_limits<int>::max());
 
-	bool charPossible = (i >= charMin && i <= charMax);
+	bool intPossible = (d >= intMin && d <= intMax);
+
+	int i = 0;
+	if (intPossible)
+		i = static_cast<int>(d);
+
+	
+	// char range check
+	double charMin =
+		static_cast<double>(std::numeric_limits<char>::min());
+	double charMax =
+		static_cast<double>(std::numeric_limits<char>::max());
+	
+	bool charPossible = (d >= charMin && d <= charMax);
 
 	char c = 0;
 	if (charPossible)
-		c = static_cast<char>(i);
+		c = static_cast<char>(d);
 
-	float f =
-		static_cast<float>(i);
-	
-	double d =
-		static_cast<double>(i);
+	// float range check
+	double floatMax =
+		static_cast<double>(std::numeric_limits<float>::max());
+	bool floatPossible = (d >= -floatMax && d <= floatMax);
+
+	float f = 0.0f;
+	if (floatPossible)
+		f = static_cast<float>(d);
 	
 	printChar(charPossible, c);
-	printInt(true, i);
-	printFloat(true, f);
+	printInt(intPossible, i);
+	printFloat(floatPossible, f);
 	printDouble(true, d);
 
 }
+
+
 /*
 man 3 floor
 man 3 ceil
