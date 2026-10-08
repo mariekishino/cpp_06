@@ -20,7 +20,7 @@ Base* generate(void)
 	return static_cast<Base*>(new C);
 }
 
-void identify(Base* p)
+void identify(Base *p)
 {
 	if (dynamic_cast<A*>(p) != NULL)
 		std::cout << "A" << std::endl;
@@ -32,7 +32,7 @@ void identify(Base* p)
 		std::cout << "Unknown" << std::endl;
 }
 
-void identify(Base& p)
+void identify(Base &p)
 {
 	try
 	{
@@ -42,7 +42,6 @@ void identify(Base& p)
 	}
 	catch(const std::exception&)
 	{
-		std::cout << "[A& cast failed]";
 	}
 
 	try
@@ -53,7 +52,6 @@ void identify(Base& p)
 	}
 	catch(const std::exception&)
 	{
-		std::cout << "[B& cast failed]";
 	}
 	
 	try
@@ -63,8 +61,7 @@ void identify(Base& p)
 		return;
 	}
 	catch(const std::exception&)
-	{
-		std::cout << "[C& cast failed]";
+	{	
 	}
 
 	std::cout << "Unknown" << std::endl;
